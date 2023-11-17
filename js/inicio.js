@@ -1,9 +1,9 @@
 //IMPORT
-import { comprarProducto } from "./carrito.js"
 import { eliminarProducto } from "./administrador.js"
+import { comprarProducto } from "./carrito.js"
 
-const userLogin = document.getElementById("userLogin")
-const divProductos = document.getElementById("productos")
+const userLogin = document.getElementById("userLogin") /* usuario */
+const divProductos = document.getElementById("productos") /* div carrito index */
 const filterInput = document.getElementById("filter__input")
 const filterLista = document.getElementById("filter__lista")
 const filterNombre = document.getElementById("filter__nombre")
@@ -16,12 +16,12 @@ let productosFiltrados = [...productosDisponibles];
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  if (usuarioLogeado === null) {
+  if(usuarioLogeado === null){
     const a = document.createElement("a")
     a.href = "./html/usuarios.html"
     a.innerHTML = "Login"
     userLogin.appendChild(a)
-  } else {
+  }else{
     const p = document.createElement("p")
     const close = document.createElement("button")
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     close.id = "cerrar__sesion"
     close.innerHTML = "cerrar sesion"
     close.addEventListener("click", () => {
-      alert(`Gracias por comprar en nuestra tienda ${usuarioLogeado.user}. `)
+      alert(`Gracias por comprar en nuestra tienda ${usuarioLogeado.user}. Usuario deslogeado`)
 
       sessionStorage.removeItem("usuario")
       location.reload()
@@ -41,18 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
   generarCardsProductos(productosDisponibles)
 })
 
-
 export const generarCardsProductos = (productos) => {
   divProductos.innerHTML = "";
 
   productos.forEach((producto) => {
 
     const { imagen, nombre, categoria, precio, id } = producto
-
+     
     let card = document.createElement("div");
     card.className = "producto";
     card.innerHTML = `
-      <div class="card" style="width: 18rem;">
+    
+    <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="${imagen}" alt="Card image cap">
       <div class="card-body">
       <p class="card-title">${nombre}</p>
@@ -61,27 +61,24 @@ export const generarCardsProductos = (productos) => {
       <p class="card-text">Precio: <b>$${precio}</b></p>
       <button id="btn${id}" class="btn btn-primary">Comprar</button>
 
-      ${
-        usuarioLogeado?.admin === true
-        ? `<button id="eliminar${id}" class="btn btn-danger">Eliminar</button>` : ""
-      }
+          ${usuarioLogeado?.admin === true
+            ? `<button id="eliminar${id}" class="btn btn-danger">Eliminar</button>` : ""
+          }
+     </div>
+    </div>`;
+          
+      divProductos.appendChild(card)
+  
+      const btnComprar = document.getElementById(`btn${id}`)
+       btnComprar.addEventListener("click", () => comprarProducto(id))
 
-      </div>
-      </div>`;
-
-    divProductos.appendChild(card);
-
-    const btnComprar = document.getElementById(`btn${id}`)
-    btnComprar.addEventListener("click", () => comprarProducto(id))
-
-      if(usuarioLogeado?.admin === true){
-        const btnEliminar = document.getElementById(`eliminar${id}`)
-        
-        btnEliminar.addEventListener("click", () => eliminarProducto(id))
-      }
-  });
-};
-
+       if (usuarioLogeado?.admin === true) {
+         const btnEliminar = document.getElementById(`eliminar${id}`)
+         btnEliminar.addEventListener("click", () => eliminarProducto(id))
+       }
+     });
+   };
+      
 //Filtro input
 
 filterInput.addEventListener("keyup", (e) => {
@@ -123,24 +120,24 @@ filterNombre.addEventListener("click", (e) => {
 const filtrarPorNombre = (orden) => {
   let productos
 
-  if(orden === "Ascendente"){
+  if (orden === "Ascendente") {
     productos = productosDisponibles.sort((a, b) => {
-      if(a.nombre.toLowerCase() > b.nombre.toLowerCase()){
+      if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
         return 1
-      }else if(a.nombre.toLowerCase() < b.nombre.toLowerCase()){
+      } else if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
         return -1
-      }else{
+      } else {
         return 0
       }
     })
 
-  }else if(orden === "Descendente"){
+  } else if (orden === "Descendente") {
     productos = productosDisponibles.sort((a, b) => {
-      if(a.nombre.toLowerCase() < b.nombre.toLowerCase()){
+      if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
         return 1
-      }else if(a.nombre.toLowerCase() > b.nombre.toLowerCase()){
+      } else if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
         return -1
-      }else{
+      } else {
         return 0
       }
     })
@@ -154,9 +151,9 @@ filterPrecio.addEventListener("click", (e) => {
   const orden = e.target.innerHTML
   let productos
 
-  if(orden === "Ascendente"){
+  if (orden === "Ascendente") {
     productos = productosDisponibles.sort((a, b) => a.precio - b.precio)
-  }else if(orden === "Descendente"){
+  } else if (orden === "Descendente") {
     productos = productosDisponibles.sort((a, b) => b.precio - a.precio)
   }
   generarCardsProductos(productos)

@@ -3,7 +3,7 @@ import { generarCardsProductos, productosDisponibles} from "./inicio.js"
 const btnAgregar = document.getElementById("agregar__producto")
 const usuarioLogeado = JSON.parse(sessionStorage.getItem("usuario"))
 const agregarProductos = document.getElementById("form__agregar")
-const divProductos = document.getElementById("productos")
+const divProductos = document.getElementById("productos");
 const btnModificar = document.getElementById("btn__modificar")
 
 export const eliminarProducto = (id) => {
@@ -141,10 +141,10 @@ const modificarProductos = (e, id) => {
     const precio = e.target.parentElement.parentElement.children[3].children[0].value
     const categoria = e.target.parentElement.parentElement.children[4].children[0].value
 
-    productosDisponibles[productoIndice].imagen = imagen;
-    productosDisponibles[productoIndice].nombre = nombre;
-    productosDisponibles[productoIndice].precio = precio;
-    productosDisponibles[productoIndice].categoria = categoria;
+    productosDisponibles[productoIndice].nombre = nombre
+    productosDisponibles[productoIndice].precio = precio
+    productosDisponibles[productoIndice].imagen = imagen
+    productosDisponibles[productoIndice].categoria = categoria
 
     localStorage.setItem("productos", JSON.stringify(productosDisponibles))
     generarCardsProductos(productosDisponibles)

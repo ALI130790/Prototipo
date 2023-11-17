@@ -3,115 +3,99 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Virtual</title>
+    <title>Alba Indumentaria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid"></div>
-        <a class="navbar-brand" href="#">ALBA indumentaria</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" 
-                href="#"
-                role="button" 
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                    PRECIO
-                </a>
-                <ul class="dropdown-menu" id="filter__precio">
-                    <li><a class="dropdown-item">Ascendente</a>
-                    </li>
-                    <li><a class="dropdown-item">Descendente</a>
-                    </li>
-                </ul>
-            </li>
+<body class="font-monospace">
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" 
-                href="#"
-                role="button" 
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-                    NOMBRE
-                </a>
-                <ul class="dropdown-menu" id="filter__nombre">
-                    <li><a class="dropdown-item">Ascendente</a>
-                    </li>
-                    <li><a class="dropdown-item">Descendente</a>
-                    </li>
-                </ul>
-            </li>
+    <!-- CARRUSEL -->
+    <div class="carrusel">
+        <div class="carrusel-items">
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    CATEGORIA
-                </a>
-                <ul class="dropdown-menu" id="filter__lista">
-                    <li><a class="dropdown-item" href="#">Remeras</a></li>
-                    <li><a class="dropdown-item" href="#">Calzas/Pantalones</a></li>
-                    <li> <a class="dropdown-item" href="#">Sweter</a></li>
-                    <li> <a class="dropdown-item" href="#">Todos</a></li>
-                </ul>
-            </li>
-            </ul>
+            <div class="carrusel-item">
+                <img src="./img/urbano/vestido petroleo.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/reemera con aplique negra.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/vestido ANITA.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/remera besos.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/vestidos camiseros.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/remera verde.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/vestido flores.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/remera rosa pastel.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/palazo colores.jpg" alt="">
+            </div>
+            <div class="carrusel-item">
+                <img src="./img/urbano/top rosa.jpeg" alt="">
+            </div>
+
         </div>
-        <div id="userLogin" class="nav-item"></div>
-        <div id="btnCarrito" style="margin-right: 20px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart"
-                viewBox="0 0 16 16">
-                <path
-                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-            <p id="contador__carrito"></p>
-        </div>
-    </nav>
-
-    <p>Busque su producto aqui:</p>
-    <input type="text" id="filter__input">
-    <button id="agregar__producto" class="btn btn-success">Agregar</button>
-    <button id="btn__modificar" class="btn btn-primary">Modificar</button>
-    <div id="form__agregar"></div>
-
-    <div id="productos"></div>
-    <div id="carrito">
-        <table>
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Unidades</th>
-                    <th>Costo Unitario</th>
-                    <th>Costo Total</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="items"></tbody>
-            <tfoot id="totales"></tfoot>
-        </table>
     </div>
 
-    <script type="module" src="./db/productos.js"></script>
-    <script type="module" src="./db/usuario.js"></script>
+    <div class="wrapper">
+        <aside>
+            <header>
+                <h1 class="logo">ALBA INDUMENTARIA</h1>
+            </header>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="todos" class="boton-menu boton-categoria active"><i
+                                class="bi bi-arrow-right-square-fill"></i>Todos los
+                            productos</button>
+                    </li>
+                    <li>
+                        <button id="urbano" class="boton-menu boton-categoria"> <i
+                                class="bi bi-arrow-right-square"></i>Urbano</button>
+                    </li>
+                    <li>
+                        <button id="deportivo" class="boton-menu boton-categoria"><i
+                                class="bi bi-arrow-right-square"></i>Deportivo</button>
+                    </li>
+                    <li>
+                        <a class="boton-menu boton-carrito" href="./carrito.html">
+                            <i class="bi bi-cart-fill"></i>Carrito <span id="numerito" class="numerito">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <footer>
+                <p class="texto-footer">© 2024 Alba Indumentaria</p>
+            </footer>
+        </aside>
 
-    <script type="module" src="./js/inicio.js"></script>
-    <script type="module" src="./js/administrador.js"></script>
-    <script type="module" src="./js/carrito.js"></script>
-    <script type="module" src="./js/usuario.js"></script>
+        <main>
+            <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
+            <div id="contenedor-productos" class="contenedor-productos">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+                <!-- ESTO SE COMPLETO EN: productos.js  -->
+            </div>
+        </main>
+    </div>
+
+
+
+    <script src="./js/productos.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/carrito.js"></script>
 </body>
 
 </html>
